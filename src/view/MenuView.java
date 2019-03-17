@@ -72,6 +72,7 @@ public class MenuView extends javax.swing.JFrame {
     private void ClienteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteMenuItemActionPerformed
         ClienteView clienteView = new ClienteView();
         this.desktopPane.add(clienteView);
+        clienteView.setVisible(true);
     }//GEN-LAST:event_ClienteMenuItemActionPerformed
 
     /**
