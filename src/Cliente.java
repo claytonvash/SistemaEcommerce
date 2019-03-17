@@ -1,5 +1,11 @@
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,8 +17,14 @@ import java.util.Objects;
  *
  * @author Clayton
  */
+@Entity
+@Table(name = "TB_CLIENTE")
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CD_CLIENTE")
     private Integer Codigo;
+    @Column(name = "NM_CLIENTE",length = 255, nullable = false)
     private String Nome;
   
   public Cliente(){
