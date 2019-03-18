@@ -34,23 +34,29 @@ public class ClienteDao {
         em.getTransaction().commit();
         em.close();
     }
-    public List<Cliente> pesquisar(Cliente cliente){
+    public List<Cliente> pesquisar(Cliente cliente){        
         EntityManager em = Conexao.getEntityManager();
-        StringBuilder sql = new StringBuilder("from cliente where c"+"Where 1 = 1");
-        if(cliente.getCodigo()!= null){
-            sql.append("and c.codigo = :codigo ");
-            }
-        if (cliente.getNome()!= null && !cliente.getNome().equals("")){
-            sql.append("and c.nome like :nome");
+        StringBuilder sql = new StringBuilder(" from Cliente c where 1 = 1 ");
+        
+        if(cliente.getCodigo() != null){
+            sql.append(" and c.codigo = :codigo ");
         }
-        Query query = em.createQuery(toString());
-        if (cliente.getCodigo()!= null){
-          query.setParameter("codigo", cliente.getCodigo());
-          
+        
+        if(cliente.getNome() != null && !cliente.getNome().equals("")){
+            sql.append(" and c.nome like  :nome ");
         }
-        if (cliente.getNome()!= null && !cliente.getNome().equals("")){
-          query.setParameter("nome", "%"+cliente.getNome()+"certo");
+        
+        Query query = em.createQuery(sql.toString());
+        if(cliente.getCodigo() != null){
+            query.setParameter("codigo", cliente.getCodigo());
+            
         }
+        
+        if(cliente.getNome() != null && !cliente.getNome().equals("")){
+            query.setParameter("nome", "%"+cliente.getNome()+"%");
+        }
+        
         return query.getResultList();
+        
     }
 }
