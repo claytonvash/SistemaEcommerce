@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.dao.ClienteDao;
 import model.domain.Cliente;
+import model.service.ServiceLocator;
 import org.jdesktop.observablecollections.ObservableCollections;
 import util.ValidacaoException;
 
@@ -29,7 +30,7 @@ public final class ClienteControl {
     private final ClienteDao clienteDao;
     
     public ClienteControl(){
-        clienteDao = new ClienteDao();
+        clienteDao = ServiceLocator.getClienteDao();
         clientesTabela = ObservableCollections.observableList(new ArrayList<Cliente>());
         novo();
         pesquisar();
