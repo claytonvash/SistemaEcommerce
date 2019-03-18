@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import util.ValidacaoException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +28,7 @@ public class Cliente {
     @Column(name = "CD_CLIENTE")
     private Integer Codigo;
     @Column(name = "NM_CLIENTE",length = 255, nullable = false)
-    private String Nome;
+    private String nome;
   
   public Cliente(){
       
@@ -38,7 +39,7 @@ public class Cliente {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     @Override
@@ -64,6 +65,10 @@ public class Cliente {
             return false;
         }
         return true;
+    }
+    public void validar() throws ValidacaoException {
+        if(this.nome == null || this.nome.equals(""))
+            throw new ValidacaoException("Campo nome não preenchido");
     }
   
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import model.dao.ClienteDao;
 import model.domain.Cliente;
 import org.jdesktop.observablecollections.ObservableCollections;
+import util.ValidacaoException;
 
 /**
  *
@@ -43,7 +44,8 @@ public final class ClienteControl {
         clientesTabela.clear();
         clientesTabela.addAll(clienteDao.pesquisar(clienteDigitado));
     }
-    public void salvar(){
+    public void salvar() throws ValidacaoException {
+        clienteDigitado.validar();
         clienteDao.salvarAtualizar(clienteDigitado);
         novo();
         pesquisar();
